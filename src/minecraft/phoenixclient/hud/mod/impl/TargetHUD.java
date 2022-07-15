@@ -5,6 +5,7 @@ import java.awt.Color;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItemFrame;
 import phoenixclient.hud.mod.HudMod;
 
 public class TargetHUD extends HudMod{
@@ -35,7 +36,6 @@ public class TargetHUD extends HudMod{
 		// TODO Auto-generated method stub
 		return 100;
 	}
-	
 	@Override
 	public int getHeight() {
 		// TODO Auto-generated method stub
@@ -44,16 +44,14 @@ public class TargetHUD extends HudMod{
 	
 	
 	private void renderTargetHud() {
-		
+		if (!(mc.pointedEntity instanceof EntityItemFrame)) {
 		target = (EntityLivingBase) mc.pointedEntity;
-		
-		
 		if (target != null) {
 			fr.drawStringWithShadow(target.getName(), getX() + 2, getY() + 2, -1);
 			fr.drawStringWithShadow((int) target.getHealth() + " \u2764", getX() + 2, getY() + 2 + fr.FONT_HEIGHT, -1);
 			GuiInventory.drawEntityOnScreen(getX() + fr.getStringWidth(target.getName()) + 30, getY() + 30, 20, 50, 0, target);
 		}
-		
+		}
 	}
 
 }

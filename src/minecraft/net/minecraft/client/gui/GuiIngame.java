@@ -43,6 +43,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.border.WorldBorder;
 import net.optifine.CustomColors;
+import phoenixclient.Client;
+import phoenixclient.hud.HudConfigGui;
 
 public class GuiIngame extends Gui
 {
@@ -358,6 +360,10 @@ public class GuiIngame extends Gui
         else
         {
             this.overlayPlayerList.updatePlayerList(false);
+        }
+        
+        if (!(mc.currentScreen instanceof HudConfigGui)) {
+        	Client.INSTANCE.hudManager.renderMods();
         }
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);

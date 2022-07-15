@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import phoenixclient.hud.mod.impl.FPSMod;
 import phoenixclient.hud.mod.impl.Keystrokes;
+import phoenixclient.hud.mod.impl.PingMod;
 import phoenixclient.hud.mod.impl.TargetHUD;
 import phoenixclient.hud.mod.impl.TestMod;
 
@@ -17,6 +18,7 @@ public class HudManager {
 	public FPSMod fps;
 	public TargetHUD targetHud;
 	public Keystrokes keystrokes;
+//	public PingMod pingMod;
 	
 	public HudManager() {
 
@@ -24,6 +26,7 @@ public class HudManager {
 		hudMods.add(fps = new FPSMod());
 		hudMods.add(targetHud = new TargetHUD());
 		hudMods.add(keystrokes = new Keystrokes());
+//		hudMods.add(pingMod = new PingMod());
 		
 	}
 	
