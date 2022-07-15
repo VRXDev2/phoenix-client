@@ -286,6 +286,9 @@ public class GameSettings
     private static final String[] KEYS_DYNAMIC_LIGHTS = new String[] {"options.off", "options.graphics.fast", "options.graphics.fancy"};
     public KeyBinding ofKeyBindZoom;
     private File optionsFileOF;
+    
+    
+    public static final KeyBinding HUD_GUI = new KeyBinding("Open The Hud Menu", Keyboard.KEY_RSHIFT, "Phoenix");
 
     public GameSettings(Minecraft mcIn, File optionsFileIn)
     {
@@ -325,6 +328,7 @@ public class GameSettings
         this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.mc, this.ofKeyBindZoom));
         KeyUtils.fixKeyConflicts(this.mc, new KeyBinding[] {this.ofKeyBindZoom});
         this.renderDistanceChunks = 8;
+        loadClientKeybinds();
         this.loadOptions();
         Config.initGameSettings(this);
     }
@@ -337,9 +341,14 @@ public class GameSettings
         this.gammaSetting = 70.0F;
         this.forceUnicodeFont = "en_US";
         this.logger = false;
+        loadClientKeybinds();
     }
 
-    /**
+    private void loadClientKeybinds() {
+    	this.keyBindings = (KeyBinding[])ArrayUtils.add(this.keyBindings, this.HUD_GUI);
+	}
+
+	/**
      * Represents a key or mouse button as a string. Args: key
      *  
      * @param key The key to display

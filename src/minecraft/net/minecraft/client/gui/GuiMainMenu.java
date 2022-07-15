@@ -86,7 +86,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     private int field_92021_u;
     private int field_92020_v;
     private int field_92019_w;
-    private ResourceLocation backgroundTexture;
 
     /** Minecraft Realms button. */
     private GuiButton realmsButton;
@@ -204,7 +203,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     	Client.INSTANCE.getDiscordRP().update("Idle", "Main Menu");
     	
         this.viewportTexture = new DynamicTexture(256, 256);
-        this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
+        
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
 
@@ -501,7 +500,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
      */
     private void rotateAndBlurSkybox(float p_73968_1_)
     {
-        this.mc.getTextureManager().bindTexture(this.backgroundTexture);
+    	mc.getTextureManager().bindTexture(new ResourceLocation("client/background.png"));
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
         GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, 256, 256);

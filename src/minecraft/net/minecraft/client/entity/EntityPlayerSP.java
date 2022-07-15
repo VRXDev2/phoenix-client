@@ -51,6 +51,8 @@ import net.minecraft.util.MovementInput;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
+import phoenixclient.event.impl.EventUpdate;
+import phoenixclient.event.impl.PlayerChat;
 
 public class EntityPlayerSP extends AbstractClientPlayer
 {
@@ -167,6 +169,10 @@ public class EntityPlayerSP extends AbstractClientPlayer
      */
     public void onUpdate()
     {
+    	
+    	EventUpdate event = new EventUpdate();
+    	event.call();
+    	
         if (this.worldObj.isBlockLoaded(new BlockPos(this.posX, 0.0D, this.posZ)))
         {
             super.onUpdate();
@@ -295,7 +301,11 @@ public class EntityPlayerSP extends AbstractClientPlayer
      */
     public void sendChatMessage(String message)
     {
-        this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
+    	PlayerChat event = new PlayerChat(message);
+    	event.call();
+    	if (!event.isCancelled()) {
+    		this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
+    	}
     }
 
     /**
