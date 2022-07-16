@@ -2,7 +2,7 @@ package net.minecraft.client.gui;
 
 import java.io.IOException;
 import net.minecraft.client.resources.I18n;
-import phoenixclient.ui.MainMenu;
+import phoenixclient.ui.mainmenu.MainMenu;
 
 public class GuiMemoryErrorScreen extends GuiScreen
 {

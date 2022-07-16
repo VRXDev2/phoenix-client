@@ -22,7 +22,7 @@ public class HudMod {
 		this.x = x;
 		this.y = y;
 			
-		drag = new DraggableComponent(x, y, x + getWidth(), y + getHeight(), new Color(0,0,0,0).getRGB());
+		drag = new DraggableComponent(x, y, getWidth(), getHeight(), new Color(0,0,0,0).getRGB());
 		
 		this.enabled = true;
 	}

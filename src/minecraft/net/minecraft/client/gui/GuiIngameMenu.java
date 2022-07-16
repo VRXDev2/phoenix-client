@@ -6,7 +6,7 @@ import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.realms.RealmsBridge;
-import phoenixclient.ui.MainMenu;
+import phoenixclient.ui.mainmenu.MainMenu;
 
 public class GuiIngameMenu extends GuiScreen
 {

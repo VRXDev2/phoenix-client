@@ -109,7 +109,7 @@ public class Keystrokes extends HudMod{
 	
 	@Override
 	public int getHeight() {
-		return 18;
+		return 72;
 	}
 	
 	@Override
@@ -128,6 +128,7 @@ public class Keystrokes extends HudMod{
 		}
 		
 		GL11.glPopMatrix();
+		super.draw();
 	}
 	
 	
@@ -147,6 +148,7 @@ GL11.glPushMatrix();
 		}
 		
 		GL11.glPopMatrix();
+		super.renderDummy(mouseX, mouseY);
 	}
 	
 	
