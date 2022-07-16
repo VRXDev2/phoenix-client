@@ -54,10 +54,10 @@ public class Keystrokes extends HudMod{
 		private static final Key W = new Key("W", mc.gameSettings.keyBindLeft, 21, 1, 18, 18);
 		private static final Key A = new Key("A", mc.gameSettings.keyBindBack, 1, 21, 18, 18);
 		private static final Key S = new Key("S", mc.gameSettings.keyBindRight, 21, 21, 18, 18);
-		private static final Key D = new Key("D", mc.gameSettings.keyBindJump, 41, 1, 18, 18);
+		private static final Key D = new Key("D", mc.gameSettings.keyBindJump, 41, 21, 18, 18);
 		
 		private static final Key LMB = new Key("LMB", mc.gameSettings.keyBindPickBlock, 1, 41, 28, 18);
-		private static final Key RMB = new Key("RMB", mc.gameSettings.keyBindDrop, 31, 31, 28, 18);
+		private static final Key RMB = new Key("RMB", mc.gameSettings.keyBindDrop, 31, 41, 28, 18);
 		
 		private static final Key Jump1 = new Key("----", mc.gameSettings.keyBindSneak, 1, 41, 58, 18);
 		private static final Key Jump2 = new Key("----", mc.gameSettings.keyBindSneak, 1, 61, 58, 18);
@@ -84,7 +84,7 @@ public class Keystrokes extends HudMod{
 			return h;
 		}
 		public int getWidth() {
-			return 2;
+			return w;
 		}
 		
 		public String getName() {
@@ -120,7 +120,7 @@ public class Keystrokes extends HudMod{
 			
 			int textWidth = fr.getStringWidth(key.getName());
 			
-			Gui.drawRect(getX() + key.getX(), getY() + key.getY(), getX() + key.getWidth(), getY() + key.getHeight(), key.isDown() ? new Color(255,255,255,102).getRGB() : new Color(0,0,0,120).getRGB());
+			Gui.drawRect(getX() + key.getX(), getY() + key.getY(), getX() + key.getX() + key.getWidth(), getY() + key.getY() + key.getHeight(), key.isDown() ? new Color(255,255,255,102).getRGB() : new Color(0,0,0,120).getRGB());
 			
 			fr.drawStringWithShadow(key.getName(), getX() + key.getX() + key.getWidth() / 2 - textWidth / 2, getY() + key.getY() + key.getHeight() / 2 - 4, key.isDown() ? new Color(0,0,0,255).getRGB() : -1);
 			
@@ -133,13 +133,13 @@ public class Keystrokes extends HudMod{
 	
 	@Override
 	public void renderDummy(int mouseX, int mouseY) {
-		GL11.glPushMatrix();
+GL11.glPushMatrix();
 		
 		for (Key key : mod.getKeys()) {
 			
 			int textWidth = fr.getStringWidth(key.getName());
 			
-			Gui.drawRect(getX() + key.getX(), getY() + key.getY(), getX() + key.getWidth(), getY() + key.getHeight(), key.isDown() ? new Color(255,255,255,102).getRGB() : new Color(0,0,0,120).getRGB());
+			Gui.drawRect(getX() + key.getX(), getY() + key.getY(), getX() + key.getX() + key.getWidth(), getY() + key.getY() + key.getHeight(), key.isDown() ? new Color(255,255,255,102).getRGB() : new Color(0,0,0,120).getRGB());
 			
 			fr.drawStringWithShadow(key.getName(), getX() + key.getX() + key.getWidth() / 2 - textWidth / 2, getY() + key.getY() + key.getHeight() / 2 - 4, key.isDown() ? new Color(0,0,0,255).getRGB() : -1);
 			

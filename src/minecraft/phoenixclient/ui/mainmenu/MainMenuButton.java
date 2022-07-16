@@ -7,6 +7,8 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
+import phoenixclient.util.font.FontUtil;
+import phoenixclient.util.font.MinecraftFontRenderer;
 
 public class MainMenuButton extends GuiButton{
 
@@ -19,7 +21,7 @@ public class MainMenuButton extends GuiButton{
 	
 	@Override
 	public void drawButton(Minecraft mc, int mouseX, int mouseY) {
-        FontRenderer fontrenderer = mc.fontRendererObj;
+		MinecraftFontRenderer fontrenderer = FontUtil.normal;
         mc.getTextureManager().bindTexture(buttonTextures);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
@@ -40,7 +42,7 @@ public class MainMenuButton extends GuiButton{
             j = 16777120;
         }
 
-        this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, j);
+        fontrenderer.drawCenteredString(this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, j);
 	}
 	
 
