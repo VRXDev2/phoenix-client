@@ -169,6 +169,7 @@ import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
 import phoenixclient.Client;
 import phoenixclient.event.impl.ClientTick;
+import phoenixclient.gui.SplashProgress;
 import phoenixclient.ui.mainmenu.MainMenu;
 
 import org.apache.commons.io.IOUtils;
@@ -476,6 +477,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
      */
     private void startGame() throws LWJGLException, IOException
     {
+    	
         this.gameSettings = new GameSettings(this, this.mcDataDir);
         this.defaultResourcePacks.add(this.mcDefaultResourcePack);
         this.startTimerHackThread();
@@ -501,9 +503,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.refreshResources();
         this.renderEngine = new TextureManager(this.mcResourceManager);
         this.mcResourceManager.registerReloadListener(this.renderEngine);
-        this.drawSplashScreen(this.renderEngine);
+        //this.drawSplashScreen(this.renderEngine);
         
-        //SplashScreen.drawSplash(getTextureManager());
+        SplashProgress.drawSplash(getTextureManager());
         
         this.initStream();
         this.skinManager = new SkinManager(this.renderEngine, new File(this.fileAssets, "skins"), this.sessionService);
@@ -552,26 +554,26 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         GlStateManager.loadIdentity();
         GlStateManager.matrixMode(5888);
         this.checkGLError("Startup");
+        Client.INSTANCE.startup();
         this.textureMapBlocks = new TextureMap("textures");
         this.textureMapBlocks.setMipmapLevels(this.gameSettings.mipmapLevels);
         this.renderEngine.loadTickableTexture(TextureMap.locationBlocksTexture, this.textureMapBlocks);
         this.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
         this.textureMapBlocks.setBlurMipmapDirect(false, this.gameSettings.mipmapLevels > 0);
+        SplashProgress.setProgress(2, "Minecraft - Model Manager");
         this.modelManager = new ModelManager(this.textureMapBlocks);
-        //SplashScreen.setProgress(2, "Model Manager");
         this.mcResourceManager.registerReloadListener(this.modelManager);
         this.renderItem = new RenderItem(this.renderEngine, this.modelManager);
-        //SplashScreen.setProgress(3, "Render Item");
         this.renderManager = new RenderManager(this.renderEngine, this.renderItem);
-        //SplashScreen.setProgress(4, "Render Manager");
+        SplashProgress.setProgress(3, "Minecraft - Render Manager");
         this.itemRenderer = new ItemRenderer(this);
-        //SplashScreen.setProgress(5, "Item Renderer");
+        SplashProgress.setProgress(4, "Minecraft - Item Renderer");
         this.mcResourceManager.registerReloadListener(this.renderItem);
         this.entityRenderer = new EntityRenderer(this, this.mcResourceManager);
-        //SplashScreen.setProgress(6, "Entity Renderer");
+        SplashProgress.setProgress(5, "Minecraft - Entity Renderer");
         this.mcResourceManager.registerReloadListener(this.entityRenderer);
         this.blockRenderDispatcher = new BlockRendererDispatcher(this.modelManager.getBlockModelShapes(), this.gameSettings);
-        //SplashScreen.setProgress(7, "Block Renderer Dispatcher");
+        SplashProgress.setProgress(6, "Minecraft - Block Renderer Dispatcher");
         this.mcResourceManager.registerReloadListener(this.blockRenderDispatcher);
         this.renderGlobal = new RenderGlobal(this);
         this.mcResourceManager.registerReloadListener(this.renderGlobal);
@@ -580,8 +582,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
+        SplashProgress.setProgress(7, "Client - Startup");
 
-        Client.INSTANCE.startup();
+        
         
         if (this.serverName != null)
         {
