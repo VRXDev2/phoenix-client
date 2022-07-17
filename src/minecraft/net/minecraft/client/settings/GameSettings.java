@@ -289,6 +289,7 @@ public class GameSettings
     
     
     public static final KeyBinding HUD_GUI = new KeyBinding("Open The Hud Menu", Keyboard.KEY_RSHIFT, "Phoenix");
+//    public static final KeyBinding CLICK_GUI = new KeyBinding("Open The Click Gui", Keyboard.KEY_RCONTROL, "Phoenix");
 
     public GameSettings(Minecraft mcIn, File optionsFileIn)
     {
@@ -328,9 +329,9 @@ public class GameSettings
         this.mc = (KeyBinding[])((KeyBinding[])ArrayUtils.add(this.mc, this.ofKeyBindZoom));
         KeyUtils.fixKeyConflicts(this.mc, new KeyBinding[] {this.ofKeyBindZoom});
         this.renderDistanceChunks = 8;
-        loadClientKeybinds();
         this.loadOptions();
         Config.initGameSettings(this);
+        loadClientKeybinds();
     }
 
     public GameSettings()
@@ -345,7 +346,8 @@ public class GameSettings
     }
 
     private void loadClientKeybinds() {
-    	this.keyBindings = (KeyBinding[])ArrayUtils.add(this.keyBindings, this.HUD_GUI);
+    	this.keyBindings = ((KeyBinding[])ArrayUtils.add(this.keyBindings, this.HUD_GUI));
+//    	this.keyBindings = (KeyBinding[])ArrayUtils.add(this.keyBindings, this.CLICK_GUI);
 	}
 
 	/**

@@ -1,7 +1,9 @@
-package phoenixclient.ui;
+package phoenixclient.ui.mainmenu;
 
 import java.awt.Color;
 import java.io.IOException;
+
+import org.lwjgl.opengl.GL41;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
@@ -9,6 +11,7 @@ import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSelectWorld;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import phoenixclient.Client;
@@ -23,20 +26,21 @@ public class MainMenu extends GuiScreen{
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(width/2f, height/2f, 0);
 		GlStateManager.scale(3, 3, 1);
-		// if u can fix this x, y lol
-//		this.drawString(fontRendererObj, "Phoenix Client", 390, height / 2 - 50, -1);
 		GlStateManager.translate(-(width/2f), -(height/2f), 0);
 		GlStateManager.popMatrix();
+		ScaledResolution sr = new ScaledResolution(mc);
+		Gui.drawRect(380, 220, sr.getScaledWidth() - 360, sr.getScaledHeight() - 200, new Color(0,0,0,170).getRGB());
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 	
 	@Override
 	public void initGui() {
 		// Add The GUI Buttons
-	    this.buttonList.add(new GuiButton(1, 390, height / 2 - 35, "SinglePlayer"));
-	    this.buttonList.add(new GuiButton(2, 390, height / 2 - 12, "MultiPlayer"));
-	    this.buttonList.add(new GuiButton(3, 390, height / 2 + 12, "Options"));
-	    this.buttonList.add(new GuiButton(4, 390, height / 2 + 35, "Quit"));
+		ScaledResolution sr = new ScaledResolution(mc);
+	    this.buttonList.add(new MainMenuButton(1, sr.getScaledWidth() - 570, height / 2 - 35, "SinglePlayer"));
+	    this.buttonList.add(new MainMenuButton(2, sr.getScaledWidth() - 570, height / 2 - 12, "MultiPlayer"));
+	    this.buttonList.add(new MainMenuButton(3, sr.getScaledWidth() - 570, height / 2 + 12, "Options"));
+	    this.buttonList.add(new MainMenuButton(4, sr.getScaledWidth() - 570, height / 2 + 35, "Quit"));
 		super.initGui();
 	}
 	

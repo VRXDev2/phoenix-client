@@ -169,7 +169,7 @@ import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
 import phoenixclient.Client;
 import phoenixclient.event.impl.ClientTick;
-import phoenixclient.ui.MainMenu;
+import phoenixclient.ui.mainmenu.MainMenu;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
@@ -612,6 +612,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
 
         this.renderGlobal.makeEntityOutlineShader();
+        Client.INSTANCE.start();
     }
 
     private void registerMetadataSerializers()
@@ -639,7 +640,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private void createDisplay() throws LWJGLException
     {
         Display.setResizable(true);
-        Display.setTitle("Minecraft 1.8.9");
+        Display.setTitle(Client.INSTANCE.NAME + " 1.8.9" + " (" + Client.INSTANCE.VERSION + ")");
 
         try
         {

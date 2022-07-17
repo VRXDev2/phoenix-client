@@ -44,7 +44,6 @@ import net.minecraft.util.StringUtils;
 import net.minecraft.world.border.WorldBorder;
 import net.optifine.CustomColors;
 import phoenixclient.Client;
-import phoenixclient.hud.HudConfigGui;
 
 public class GuiIngame extends Gui
 {
@@ -361,6 +360,7 @@ public class GuiIngame extends Gui
         {
             this.overlayPlayerList.updatePlayerList(false);
         }
+        
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
@@ -391,10 +391,6 @@ public class GuiIngame extends Gui
                 int l = sr.getScaledHeight() - 16 - 3;
                 this.renderHotbarItem(j, k, l, partialTicks, entityplayer);
             }
-            
-            if (!(mc.currentScreen instanceof HudConfigGui)) {
-                Client.INSTANCE.hudManager.renderMods();
-           }
 
             RenderHelper.disableStandardItemLighting();
             GlStateManager.disableRescaleNormal();
