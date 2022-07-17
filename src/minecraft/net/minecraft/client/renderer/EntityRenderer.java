@@ -87,6 +87,7 @@ import net.optifine.shaders.ShadersRender;
 import net.optifine.util.MemoryMonitor;
 import net.optifine.util.TextureUtils;
 import net.optifine.util.TimedEvent;
+import phoenixclient.event.impl.RenderEvent;
 import phoenixclient.ui.mainmenu.MainMenu;
 
 import org.apache.logging.log4j.LogManager;
@@ -1429,6 +1430,8 @@ public class EntityRenderer implements IResourceManagerReloadListener
                 }
             }
         }
+        
+        new RenderEvent().call();
 
         this.frameFinish();
         this.waitForServerThread();

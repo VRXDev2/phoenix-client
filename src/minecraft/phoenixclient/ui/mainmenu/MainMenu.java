@@ -26,8 +26,6 @@ public class MainMenu extends GuiScreen{
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(width/2f, height/2f, 0);
 		GlStateManager.scale(3, 3, 1);
-		// if u can fix this x, y lol
-//		this.drawString(fontRendererObj, "Phoenix Client", 390, height / 2 - 50, -1);
 		GlStateManager.translate(-(width/2f), -(height/2f), 0);
 		GlStateManager.popMatrix();
 		ScaledResolution sr = new ScaledResolution(mc);
