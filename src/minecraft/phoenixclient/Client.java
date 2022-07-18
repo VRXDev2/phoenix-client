@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import phoenixclient.event.EventManager;
 import phoenixclient.event.EventTarget;
 import phoenixclient.event.impl.ClientTick;
+import phoenixclient.gui.SplashProgress;
 import phoenixclient.gui.hud.HUDManager;
 import phoenixclient.mods.ModInstances;
 import phoenixclient.util.font.FontUtil;
@@ -30,6 +31,7 @@ public class Client {
 		discordRP.start();
 		FontUtil.bootstrap();
 		eventManager.register(this);
+		SplashProgress.setProgress(1, "Client - Intilizing Discord RP");
 		System.out.println("Starting " + NAME + " " + VERSION);
 	}
 	
